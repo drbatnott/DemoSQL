@@ -30,7 +30,7 @@
 						$newStr = substr_replace($parts[1],"",-1);
 							
                         echo $count . " Town *" . $parts[0] . "* County *". $newStr."*<br/>";
-                        $sql = "insert into mytowns (townName,county) values ('$parts[0]','$newStr');";
+                        $sql = "insert into mytowns (townName,county) values ('$parts[0]"','$newStr');";
                         $count++;//like in C# this is the autoincrement ++
                         mysqli_query($conn,$sql);
                     }

@@ -21,7 +21,7 @@
                 $sql = "create table myTowns (ID int not null AUTO_INCREMENT,";
                 $sql = $sql . " townName VARCHAR(256), county VARCHAR(255), PRIMARY KEY (ID)) ENGINE = InnoDB;";
                 echo $sql ."<br/>"; 
-                mysqli_query($conn,$sql);
+                //mysqli_query($conn,$sql);
                 return true;
             }
             catch(mysqli_sql_exception $e){

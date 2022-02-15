@@ -18,9 +18,9 @@
             $driver->report_mode = MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR;
             try{
                 $conn = mysqli_connect($server,$user,$password,$dbase); 
-                $sql = "create table myTowns (ID int not null AUTO_INCREMENT,";
-                $sql = $sql . " townName VARCHAR(256), county VARCHAR(255), PRIMARY KEY (ID)) ENGINE = InnoDB;";
-                echo $sql ."<br/>"; 
+                $sql = "create table products (ID int not null AUTO_INCREMENT,";
+                $sql = $sql . " productName VARCHAR(256), PRIMARY KEY (ID)) ENGINE = InnoDB;";
+                //echo $sql ."<br/>"; 
                 mysqli_query($conn,$sql);
                 return true;
             }
