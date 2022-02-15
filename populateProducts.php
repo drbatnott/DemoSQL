@@ -27,10 +27,10 @@
                     $input = fgets($myfile);//Like textReader.ReadLine() in C#
                     if(str_contains($input,",")){
                         $parts = explode(",",$input);
-						$newStr = substr_replace($parts[1],"",-1);
+						$newStr = substr_replace($parts[1],"",-2);
 							
-                        echo $count . " Town *" . $parts[0] . "* County *". $newStr."*<br/>";
-                        $sql = "insert into mytowns (townName,county) values ('$parts[0]','$newStr');";
+                        echo $count . " Town *" . $parts[0] . "* Product *". $newStr."*<br/>";
+                        $sql = "insert into products (productName) values ('$newStr');";
                         $count++;//like in C# this is the autoincrement ++
                         mysqli_query($conn,$sql);
                     }
@@ -53,7 +53,7 @@
     <h3>Will be based here</h3>
     If it all works then we will not get any error message!<br/>
     <?php 
-    $result = PopulateTableFromFile("townsInNcounties.csv"); 
+    $result = PopulateTableFromFile("products.csv"); 
     echo "the result was $result <br/>";
     ?>
 </body>
