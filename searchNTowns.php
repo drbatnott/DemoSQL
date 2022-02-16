@@ -3,21 +3,27 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Populating New Table in the Database</title>
+    <title>Towns in County</title>
     <?php
+        require_once('dbasefunctions.php');
+
         function SearchForTowns($County){
         /*
         To allow a connection to an Exception there has to be 
         something to make the mysqli commands throw an exception
-        */
+        
+
             $server = "localhost";
             $user = "root";
             $password = "";
-            $driver = new mysqli_driver();
+            
+            */
             $dbase = "ntowns";
+            $driver = new mysqli_driver();
+            
             $driver->report_mode = MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR;
             try{
-                $conn = mysqli_connect($server,$user,$password,$dbase); 
+                 $conn= SetUpConnection($dbase);
                 //in the following statement townName will be returned as name which is called an alias!
                 $sql = "select townName as name, county from mytowns where county like '$County';";
                 echo $sql . "<br/>";
@@ -30,11 +36,7 @@
                 }
                 else {
                     return false;
-                }
-
-
-                //mysqli_query($conn,$sql);
-                
+                }          
             }
             catch(mysqli_sql_exception $e){
                 echo "Sorry an Error occured<br/>";

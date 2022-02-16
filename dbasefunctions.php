@@ -1,7 +1,7 @@
 <?php
     
-    function SetUpConnection(){
-        $db = "towns";
+    function SetUpConnection($db){
+        //$db = "towns";
         $server = "localhost";
         $user = "root";
         $pword= "";
