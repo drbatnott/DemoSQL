@@ -3,27 +3,27 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Towns in County</title>
+    <title>Towns by County or Product</title>
     <?php
         require_once('dbasefunctions.php');
-
+        if(isset($_POST['byCounty'])){
+            $type = "by County";
+            $searchItem = $_POST['county'];
+        }
+        else{
+            $type = "by Product";
+            $searchItem = $_POST['product'];
+        }
         function SearchForTowns($County){
-        /*
-        To allow a connection to an Exception there has to be 
-        something to make the mysqli commands throw an exception
-        
-
-            $server = "localhost";
-            $user = "root";
-            $password = "";
-            
-            */
             $dbase = "ntowns";
             $driver = new mysqli_driver();
             
             $driver->report_mode = MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR;
             try{
                  $conn= SetUpConnection($dbase);
+                 echo "<br/>before ". $County ." after escape ";
+                 $County = EscapeInput($conn,$County);
+                 echo $County . "<br/>";
                 //in the following statement townName will be returned as name which is called an alias!
                 $sql = "select townName as name, county from mytowns where county like '$County';";
                 echo $sql . "<br/>";
@@ -47,17 +47,13 @@
 
 </head>
 <body>
-    <h3>Will be based here</h3>
-    If it all works then we will not get any error message!<br/>
+    <h3>Searching    
     <?php 
-    $c = "Nottingham%";
-    $result = SearchForTowns($c); 
-    if($result == true){
-        echo "the result was $result <br/>";
-    }
-    else{
-        echo "no towns in $c";
-    }
+        echo $type ." named " . $searchItem;
+        if($type == "by County"){
+            SearchForTowns($searchItem);
+        }
     ?>
+    </h3>
 </body>
 </html>
